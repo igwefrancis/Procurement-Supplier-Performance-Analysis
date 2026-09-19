@@ -1,5 +1,4 @@
-
-# 📊 Sales Performance Analysis & Strategic Insights — USA Market
+# 📦 Procurement & Supplier Performance Analytics Dashboard
 
 ## Table of Contents
 
@@ -15,17 +14,17 @@
 
 ## 📌 Project Overview
 
-This project presents a **Sales Performance Dashboard** analyzing sales, profitability, customer orders, product performance, regional trends, discounts, and sales representative performance across the USA market.
+This project presents a **Procurement & Supplier Performance Analytics Dashboard**, built in Power BI, analyzing 777 purchase order records across five suppliers and five item categories.
 
-The project transforms raw sales data into actionable business insights to identify growth opportunities, improve sales performance, and support data-driven strategic decisions.
+The dashboard tracks spend, delivery performance, supplier compliance, and cost savings from negotiated pricing, transforming raw purchase order data into insights that support supplier management and procurement strategy decisions.
 
 ---
 
 ## 🖼 Dashboard Preview
 
-![Sales Performance Overview Dashboard](screenshots/01-dashboard-overview.png)
+![Procurement & Supplier Performance Analytics Dashboard](screenshots/01-dashboard-overview.png)
 
-*Interactive Excel dashboard with slicers for Category, Order Category, Sales Rep, and Order Date, showing Net Sales, Orders, AOV, and Discount KPIs alongside regional and product breakdowns.*
+*Interactive Power BI dashboard with slicers for Order Status, Item Category, Supplier, Compliance, and Order Date, showing Total Purchase Orders, Procurement Spend, Cost Savings, Average Delivery Time, Defect Rate, and Compliance Rate, alongside supplier and category breakdowns.*
 
 ---
 
@@ -33,11 +32,11 @@ The project transforms raw sales data into actionable business insights to ident
 
 The analysis was designed to:
 
-- Identify top-performing regions and products.
-- Evaluate sales representative performance using **Average Order Value (AOV)**.
-- Assess the effectiveness of discount strategies.
-- Identify performance gaps and growth opportunities.
-- Provide data-driven recommendations to improve revenue and profitability.
+- Track overall procurement spend and cost savings from negotiated pricing.
+- Evaluate supplier performance using **defect rate**, **compliance rate**, and **average delivery time**.
+- Identify which suppliers pose the highest quality and compliance risk.
+- Identify which item categories drive the most procurement spend.
+- Provide data-driven recommendations to improve supplier reliability and reduce procurement risk.
 
 ---
 
@@ -45,23 +44,24 @@ The analysis was designed to:
 
 ### Issues Identified
 
-- Missing values in key fields, such as **Quantity**.
-- Inconsistent date formats and incorrect data types.
-- Text inconsistencies causing duplicate entries, particularly in **Product Names**.
+- Missing values in key fields, such as **Defective_Units** and **Delivery_Date** (particularly for Pending and Cancelled orders).
+- Inconsistent supplier naming conventions between the raw dataset and reporting labels.
+- Raw data required calculated fields not present in the source file.
 
 ### Steps Taken
 
-- Used **Power Query** to merge tables and enrich the dataset.
-- Cleaned text using **Trim**, **Clean**, and **Proper** formatting.
-- Converted columns to the correct data types, including **Date** and **Number**.
-- Handled missing values appropriately, including replacing missing values with `0` where required.
-- Created key analytical columns such as:
-  - **Net Sales**
-  - **Order Categories**
+- Loaded the dataset into **Power BI** and used **Power Query** to clean and shape the data.
+- Handled missing values appropriately based on order status (e.g. no delivery date for orders not yet delivered).
+- Built a dedicated **DAX measures table** (Procurement KPI Analysis) to keep all calculations in one place.
+- Created key measures including:
+  - **Total Purchase Orders**, **Total Procurement Spend**, **Total Cost Savings**
+  - **Defect Rate %**, **Compliance Rate %**, **Savings %**
+  - **Delivery Days**, **Average Delivery Time**, **Cost Savings Per Unit**
+  - Benchmark measures such as **vs Avg Defect Rate** and **vs Avg Delivery Time**
 
-![Cleaned raw data — customer and product fields](screenshots/03-cleaned-raw-data-1.png)
+![Procurement KPI measures table in Power BI](screenshots/02-dax-measures-data-model.png)
 
-![Cleaned raw data — calculated fields (Net Sales, Discount, Order Category)](screenshots/04-cleaned-raw-data-2.png)
+![Raw Procurement KPI Analysis dataset](screenshots/03-raw-data.png)
 
 ---
 
@@ -69,89 +69,79 @@ The analysis was designed to:
 
 ### Key Business Questions Explored
 
-1. Which regions are driving the highest sales and profitability, and where are performance gaps occurring?
-2. Which products and product categories contribute the most to overall revenue and profit?
-3. Which sales representatives are performing above or below expectations, and what patterns explain the differences?
-4. How does **Average Order Value (AOV)** vary across regions, products and sales representatives?
-5. Are discounts contributing to higher sales, or are they reducing profitability without generating sufficient returns?
-6. How are sales and profit changing over time, and which periods show significant growth or decline?
-7. Which areas of the business present the strongest opportunities for improving revenue, profitability and sales performance?
-
-![PivotTable summary — Region, Sales Rep, and Product breakdowns](screenshots/02-pivot-summary-tables.png)
-
-![Analysis tab — KPIs, sales trend, and AOV by sales rep](screenshots/05-analysis-kpis-trends.png)
+1. Which suppliers deliver the highest defect rates, and where is quality risk concentrated?
+2. Which suppliers are non-compliant most often, and what is the overall compliance rate?
+3. Which item categories account for the largest share of procurement spend?
+4. How much cost saving is being achieved through negotiated pricing, and which suppliers negotiate best?
+5. How does average delivery time trend over the year, and where are the delays concentrated?
+6. Which suppliers combine high defect rates with low compliance, representing the greatest overall risk?
 
 ---
 
 ## 📈 Key Findings & Strategic Recommendations
 
-### 1. 🏆 High-Performing Region
+### 1. 🏭 Category Spend Concentration
 
 **Finding**
-The **South Region** is the primary revenue driver, generating the highest Net Sales of **$95.8K**. This indicates strong customer demand and effective sales execution in the region.
+**MRO** ($10.1M) and **Office Supplies** ($10.0M) are the largest procurement spend categories, ahead of Electronics ($8.6M), Raw Materials ($8.5M), and Packaging ($8.1M).
 
 **Recommendation**
-- Allocate more marketing budget to the South through digital advertising and promotions.
-- Increase inventory levels to reduce the risk of stockouts.
-- Study successful sales practices in the South for possible application to other regions.
+- Prioritize contract renegotiation and supplier consolidation efforts on MRO and Office Supplies, where spend is highest.
+- Explore volume-based discounts with top suppliers in these categories.
 
-### 2. 💻 Top Product to Promote
+### 2. ⚠️ Supplier Quality Risk
 
 **Finding**
-**Laptops** generate the highest sales at **$174.6K**, significantly outperforming other products.
+**Delta Logistics** records the highest number of defective units of any supplier, followed by Beta Supplies and Gamma Co, while Alpha Inc has the lowest defect count. Overall defect rate across all orders is **6.8%**.
 
 **Recommendation**
-- Prioritize Laptops in major marketing campaigns.
-- Maintain high inventory availability, particularly in the South Region.
-- Use Laptops as a lead product to attract customers and encourage additional purchases.
+- Open a quality review with Delta Logistics and set a defect-rate improvement target.
+- Increase incoming quality checks for high-defect suppliers.
+- Use Alpha Inc's quality performance as an internal benchmark.
 
-### 3. 📦 Low-Performing Products — Lift Strategy
+### 3. ✅ Compliance Gap
 
 **Finding**
-Products such as **Mouse, Keyboard and Monitor** generate comparatively lower sales.
+Overall compliance rate is **82.4%**, meaning roughly **1 in 6 orders (17.6%)** falls outside compliance requirements.
 
 **Recommendation**
-- Bundle lower-performing products with high-performing products.
-- Create packages such as **Laptop + Mouse** or complete **Laptop + Desk Setup** deals.
-- Use targeted discounts selectively to increase demand for slow-moving products.
+- Investigate root causes of non-compliance by supplier and item category.
+- Introduce a compliance scorecard reviewed at each supplier check-in.
+- Tie future order allocation to compliance performance.
 
-### 4. 👥 Sales Representative Coaching Opportunity
+### 4. 💰 Cost Savings from Negotiation
 
 **Finding**
-There is a clear variation in **Average Order Value (AOV)** across sales representatives. **Liam Jones** is the top performer with an AOV of approximately **$1.1K**, while other representatives range between approximately **$684** and **$368**.
+Negotiated pricing has delivered **$3.93M** in total cost savings. **Beta Supplies** delivers the strongest negotiated savings (~$0.84M, ~8.2%), while savings percentage trends lower across the remaining suppliers down to Alpha Inc (~$0.69M, ~7.8%).
 
 **Recommendation**
-- Analyze Liam Jones' sales approach, customer profile, and strongest-performing region.
-- Use his approach as a benchmark for sales team training.
-- Encourage the sales team to focus not only on the number of orders but also on increasing Average Order Value.
+- Share Beta Supplies' negotiation outcomes as a benchmark with the procurement team.
+- Set minimum savings-percentage targets for supplier contract renewals.
 
-### 5. 💰 Discount Policy Review
+### 5. 🚚 Delivery Time Trend
 
 **Finding**
-The **East Region** has the highest discount amount at approximately **$5.9K**, yet it is not the top-performing region in sales. Approximately **6% of East Region sales** is given as discounts, suggesting that the current discount strategy may be reducing margins without generating proportional revenue growth.
+Average delivery time is **11 days** overall, but the monthly trend shows noticeable peaks and troughs across the year rather than a stable pattern.
 
 **Recommendation**
-- Shift toward targeted and performance-based discounts.
-- Apply discounts strategically to slow-moving products rather than across-the-board.
-- Avoid unnecessary heavy discounting in strong-performing regions such as the South, where customer demand is already strong.
-- Monitor revenue generated per dollar of discount to measure discount effectiveness.
+- Investigate the operational or seasonal causes behind the delivery spikes.
+- Set supplier-specific delivery SLAs for the months where delays are most frequent.
+- Monitor delivery time alongside defect rate, since delays and quality issues may share root causes with the same suppliers.
 
 ---
 
 ## 💡 Overall Business Takeaway
 
-The analysis shows that **regional performance, product mix, sales representative effectiveness and discount strategy** have a significant impact on sales performance.
+The analysis shows that procurement spend, supplier quality, compliance, and delivery reliability are concentrated unevenly across suppliers, particularly around **Delta Logistics** on quality and the wider supplier base on compliance.
 
-The business can improve revenue and profitability by **investing more in high-performing regions and products, replicating successful sales practices, improving cross-selling and applying discounts more strategically**.
+The business can reduce procurement risk and improve cost efficiency by **concentrating spend with reliable, compliant suppliers, addressing quality issues at the source, and using negotiation benchmarks like Beta Supplies to lift savings across the supplier base**.
 
 ---
 
 ## 🛠 Tools & Techniques
 
-- **Microsoft Excel** — Data inspection and Visualization
-- **Power Query** — Data cleaning, transformation and table merging
-- **PivotTables** — Summarization and KPI calculation
-- **Slicers** — Interactive filtering (Category, Order Category, Sales Rep, Order Date)
-- **DAX-style Measures / Calculated Fields** — Net Sales, AOV, YoY%
+- **Power BI** — Data modeling, DAX measures, and dashboard visualization
+- **Power Query** — Data cleaning and transformation
+- **DAX** — Calculated measures (Defect Rate %, Compliance Rate %, Savings %, Delivery Days, etc.)
+- **Microsoft Excel** — Source data inspection
 
-# Procurement-Supplier-Performance-Analysis
