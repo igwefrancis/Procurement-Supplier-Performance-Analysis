@@ -20,6 +20,13 @@ The dashboard tracks spend, delivery performance, supplier compliance, and cost 
 
 ---
 
+## Data Source
+
+The raw data source used for this analysis is `Procurement KPI Analysis Dataset.csv`, containing 777 purchase order records across suppliers, item categories, pricing, delivery, and compliance fields.
+
+[Download here](data/Procurement%20KPI%20Analysis%20Dataset.csv)
+
+
 ## 🖼 Dashboard Preview
 
 ![Procurement & Supplier Performance Analytics Dashboard](screenshots/01-dashboard-overview.png)
