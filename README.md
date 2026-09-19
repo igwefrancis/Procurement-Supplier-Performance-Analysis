@@ -1,3 +1,4 @@
+
 # 📊 Sales Performance Analysis & Strategic Insights — USA Market
 
 ## Table of Contents
@@ -152,3 +153,5 @@ The business can improve revenue and profitability by **investing more in high-p
 - **PivotTables** — Summarization and KPI calculation
 - **Slicers** — Interactive filtering (Category, Order Category, Sales Rep, Order Date)
 - **DAX-style Measures / Calculated Fields** — Net Sales, AOV, YoY%
+
+# Procurement-Supplier-Performance-Analysis
